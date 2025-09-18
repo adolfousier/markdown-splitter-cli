@@ -249,11 +249,28 @@ md-split split document.md --splits 5 --verbose
 3. **Remote URLs**: Caches remote content temporarily during processing
 4. **Output Directory**: Ensure sufficient disk space for split files
 
+## Changelog
+
+### v0.1.1 (2025-09-18)
+- **Enhanced Split Markers**: Split markers now include the document name for better context
+  - Format changed from `<!-- Split containing pages 1 to 249 -->`
+  - To `<!-- EN 1993-1-2-2005 Split containing pages 1 to 249 -->`
+  - Automatically removes `_structured_markdown` suffix from document names
+  - Provides better contextual information when working with multiple split documents
+
+### v0.1.0 (Initial Release)
+- Initial release with core splitting functionality
+- Support for local files and HTTP/HTTPS URLs
+- Flexible page detection with multiple patterns
+- Configurable splitting strategies
+- Metadata generation and structure preservation
+- Analysis and validation modes
+
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes  
+3. Make your changes
 4. Add tests for new functionality
 5. Submit a pull request
 

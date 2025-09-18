@@ -46,7 +46,13 @@ impl DocumentSplitter {
                 config.splits,
             );
 
-            Self::write_split_file(&output_file, split_pages, config).await?;
+            // Extract base document name for the split marker
+            let base_document_name = std::path::Path::new(&document.source)
+                .file_stem()
+                .and_then(|s| s.to_str())
+                .unwrap_or("document");
+
+            Self::write_split_file(&output_file, split_pages, config, base_document_name).await?;
             output_files.push(output_file);
 
             debug!(
@@ -156,13 +162,20 @@ impl DocumentSplitter {
         output_path: &PathBuf,
         pages: &[MarkdownPage],
         config: &SplitConfig,
+        document_name: &str,
     ) -> Result<()> {
         let mut content = String::new();
 
         // Add header if preserving structure
         if config.preserve_structure {
+            // Extract clean document name (remove _structured_markdown suffix)
+            let clean_document_name = document_name
+                .strip_suffix("_structured_markdown")
+                .unwrap_or(document_name);
+
             content.push_str(&format!(
-                "<!-- Split containing pages {} to {} -->\n\n",
+                "<!-- {} Split containing pages {} to {} -->\n\n",
+                clean_document_name,
                 pages.first().map(|p| p.number).unwrap_or(1),
                 pages.last().map(|p| p.number).unwrap_or(1)
             ));
