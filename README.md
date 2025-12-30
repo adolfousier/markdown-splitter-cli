@@ -33,78 +33,78 @@ cargo build --release
 
 Split a single markdown file into 5 parts:
 ```bash
-md-split split document.md --splits 5
+./target/release/md-split split document.md --splits 5
 ```
 
 Split multiple files:
 ```bash
-md-split split file1.md file2.md file3.md --splits 3
+./target/release/md-split split file1.md file2.md file3.md --splits 3
 ```
 
 Split from URLs:
 ```bash
-md-split split https://raw.githubusercontent.com/user/repo/main/README.md --splits 4
+./target/release/md-split split https://raw.githubusercontent.com/user/repo/main/README.md --splits 4
 ```
 
 Mix local files and URLs:
 ```bash
-md-split split local-file.md https://example.com/remote.md --splits 2
+./target/release/md-split split local-file.md https://example.com/remote.md --splits 2
 ```
 
 ### Advanced Options
 
 Specify custom output directory:
 ```bash
-md-split split document.md --splits 5 --output ./my-output
+./target/release/md-split split document.md --splits 5 --output ./my-output
 ```
 
 Use custom page break marker:
 ```bash
-md-split split document.md --splits 3 --page-marker "<!-- SPLIT HERE -->"
+./target/release/md-split split document.md --splits 3 --page-marker "<!-- SPLIT HERE -->"
 ```
 
 Force overwrite existing files:
 ```bash
-md-split split document.md --splits 5 --force
+./target/release/md-split split document.md --splits 5 --force
 ```
 
 Disable structure preservation:
 ```bash
-md-split split document.md --splits 5 --preserve-structure false
+./target/release/md-split split document.md --splits 5 --preserve-structure false
 ```
 
 Skip metadata generation:
 ```bash
-md-split split document.md --splits 5 --include-metadata false
+./target/release/md-split split document.md --splits 5 --include-metadata false
 ```
 
 ### Analysis Mode
 
 Analyze documents without splitting:
 ```bash
-md-split analyze document.md
+./target/release/md-split analyze document.md
 ```
 
 Detailed analysis with page information:
 ```bash
-md-split analyze document.md --detailed
+./target/release/md-split analyze document.md --detailed
 ```
 
 Save analysis to JSON:
 ```bash
-md-split analyze document.md --json-output analysis.json
+./target/release/md-split analyze document.md --json-output analysis.json
 ```
 
 ### Validation
 
 Validate input sources:
 ```bash
-md-split validate file1.md https://example.com/file2.md
+./target/release/md-split validate file1.md https://example.com/file2.md
 ```
 
 Check accessibility:
 ```bash
-md-split validate file1.md --check-access
+./target/release/md-split validate file1.md --check-access
 ```
 
 ## Page Break Detection
@@ -123,10 +123,10 @@ You can define custom page break patterns using regex:
 
 ```bash
 # Split on custom HTML comments
-md-split split document.md --page-marker "<!-- NEW PAGE -->" --splits 3
+./target/release/md-split split document.md --page-marker "<!-- NEW PAGE -->" --splits 3
 
 # Split on specific markdown syntax
-md-split split document.md --page-marker "^=== BREAK ===$" --splits 4
+./target/release/md-split split document.md --page-marker "^=== BREAK ===$" --splits 4
 ```
 
 ## Output Structure
@@ -173,7 +173,7 @@ output/
 Split a large academic paper into sections:
 
 ```bash
-md-split split research-paper.md --splits 4 --output ./paper-sections
+./target/release/md-split split research-paper.md --splits 4 --output ./paper-sections
 ```
 
 ### Example 2: Documentation Site
@@ -181,7 +181,7 @@ md-split split research-paper.md --splits 4 --output ./paper-sections
 Process multiple documentation files:
 
 ```bash
-md-split split \
+./target/release/md-split split \
   docs/intro.md \
   docs/tutorial.md \
   docs/advanced.md \
@@ -195,7 +195,7 @@ md-split split \
 Split content directly from GitHub:
 
 ```bash
-md-split split \
+./target/release/md-split split \
   https://raw.githubusercontent.com/rust-lang/book/main/src/README.md \
   --splits 3 \
   --output ./rust-book-splits
@@ -206,7 +206,7 @@ md-split split \
 Use custom markers for specialized documents:
 
 ```bash
-md-split split manual.md \
+./target/release/md-split split manual.md \
   --page-marker "^<!-- CHAPTER .* -->$" \
   --splits 5 \
   --detailed
@@ -218,10 +218,10 @@ Analyze before splitting to determine optimal split count:
 
 ```bash
 # First analyze
-md-split analyze large-document.md --detailed
+./target/release/md-split analyze large-document.md --detailed
 
 # Then split based on analysis
-md-split split large-document.md --splits 8
+./target/release/md-split split large-document.md --splits 8
 ```
 
 ## Error Handling
@@ -239,7 +239,7 @@ The tool provides detailed error messages for common issues:
 Enable verbose logging for debugging:
 
 ```bash
-md-split split document.md --splits 5 --verbose
+./target/release/md-split split document.md --splits 5 --verbose
 ```
 
 ## Performance Tips
@@ -277,3 +277,4 @@ md-split split document.md --splits 5 --verbose
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
